@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.SufWms.Forms.SettingsActivity">
+
+    <include
+        android:id="@+id/toolbar_main_activity"
+        layout="@layout/toolbar"></include>
+
+    <TextView
+        android:id="@+id/tvSettingsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin_common"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/label_settings_header"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/txtServiceURL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main_activity" />
+
+    <Button
+        android:id="@+id/btnSaveSettings"
+        style="@style/customButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_common"
+        android:layout_marginTop="28dp"
+        android:text="@string/label_button_save_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtServiceURL"
+        app:layout_constraintTop_toBottomOf="@+id/rgLanguage"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/txtServiceURL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_height_common"
+        style="@style/customEditText"
+
+        android:layout_marginTop="16dp"
+        android:inputType="textPersonName"
+        android:hint="Service URL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvSettingsHeader"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettingsHeader" />
+
+    <RadioGroup
+        android:id="@+id/rgLanguage"
+        android:layout_width="374dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtServiceURL">
+
+        <RadioButton
+            android:id="@+id/rbEnglish"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:checked="true"
+            android:visibility="gone"/>
+
+        <RadioButton
+            android:id="@+id/rbSpanish"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:text="Spanish"
+            android:visibility="gone"/>
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

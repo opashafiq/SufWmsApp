@@ -1,0 +1,33 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- Button Style -->
+    <style name="customButton">
+        <item name="android:layout_marginStart">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginLeft">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginRight">@dimen/horizontal_margin_common</item>
+        <item name="android:textColor">#fcfcfc</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button_semi_transparent1</item>
+    </style>
+
+    <!-- EditText Style -->
+    <style name="customEditText">
+        <item name="android:layout_marginStart">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginLeft">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin_common</item>
+        <item name="android:layout_marginRight">@dimen/horizontal_margin_common</item>
+        <item name="android:background">@drawable/textbox_border</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:height">@dimen/edittext_height_common</item>
+    </style>
+</resources>

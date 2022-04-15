@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.SufWms.Forms.LoginActivity">
+
+
+    <Button
+        android:id="@+id/btnSettings"
+        style="@style/customButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/button_semi_transparent1"
+        android:text="@string/label_button_register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".08"
+        android:layout_marginStart="@dimen/horizontal_margin_common"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="@string/label_user_name"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/tvLoginHeader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_margin_common"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:gravity="center_horizontal"
+        android:text="@string/label_login_header"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40px"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoginMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/customButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button_semi_transparent1"
+        android:text="@string/label_button_login"
+        app:layout_constraintBottom_toTopOf="@+id/btnSettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".09"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_margin_common"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawableLeft="@drawable/lockkers"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="@string/label_password"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".08"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName" />
+
+    <TextView
+        android:id="@+id/tvLoginMessage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_margin_common"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginEnd="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="3dp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginHeader" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/horizontal_margin_common" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginRight="73dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoginHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".23"
+        app:layout_constraintHorizontal_bias="0.487"
+        android:src=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cell_shape" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

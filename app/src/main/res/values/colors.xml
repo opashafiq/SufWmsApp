@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Color Scheme For Toolbar -->
+    <color name="primaryColor">#00A5AC</color>
+
+    <!-- Color Scheme For Sliding Tab -->
+
+    <!-- ListView Pressed Color -->
+
+    <color name="LvwHederCell">#005091</color>
+
+    <!-- Button disabled color -->
+    <color name="disabled_color">#cfcfcf</color>
+
+    <!-- Some common colors -->
+    <color name="gray">#999999</color>
+    <color name="highlight_color">#999999</color>
+    <color name="alternate_color">#faf9f7</color>
+
+    <!-- Some common colors -->
+    <color name="GhostWhite">#F1F1F2</color>
+    <color name="Lavender">#e7e7e8</color>
+    <color name="VeryLightGrey">#cfcfcf</color>
+    <color name="DarkTurquoise">#16cedb</color>
+    <color name="EditTextFocusColor">#F1F1F2</color>
+    <color name="red_color_c">#F40303</color>
+
+    <drawable name="red_color">#F40303</drawable>
+    <drawable name="blue_color">#1703F4</drawable>
+</resources>
