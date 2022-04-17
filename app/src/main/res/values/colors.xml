@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorCell">#004F91</color>
+    <color name="colorBG">#E8E8E8</color>
 
     <!-- Color Scheme For Toolbar -->
     <color name="primaryColor">#00A5AC</color>
@@ -31,4 +33,5 @@
 
     <drawable name="red_color">#F40303</drawable>
     <drawable name="blue_color">#1703F4</drawable>
+
 </resources>

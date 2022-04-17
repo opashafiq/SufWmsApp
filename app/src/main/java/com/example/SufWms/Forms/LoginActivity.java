@@ -1,7 +1,5 @@
 package com.example.SufWms.Forms;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,12 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
 import com.example.SufWms.Classes.Passwd;
 import com.example.SufWms.Classes.ProjectVariables;
-import com.example.SufWms.MainActivity;
-import com.example.SufWms.Models.PartDetails;
 import com.example.SufWms.R;
 
 import java.util.List;
@@ -56,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         txtUserID=(EditText) findViewById(R.id.txtUserName);
         txtPassword=(EditText) findViewById(R.id.txtPassword);
         //intent = new Intent(this, MainActivity.class);
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, LandingActivity.class);
     }
 
     private void initObjectListeners(){

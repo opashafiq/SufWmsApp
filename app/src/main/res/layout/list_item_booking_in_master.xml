@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:id = "@+id/relativeLayout1"
+    android:layout_width = "fill_parent"
+    android:background = "@color/colorBG"
+    >
+    <TextView
+        android:id = "@+id/RV_Item_BookingId_BookingIn"
+        android:layout_width = "0dp"
+        android:layout_height = "match_parent"
+        android:layout_weight = "1"
+        android:background = "@drawable/cell_shape"
+        android:ellipsize = "end"
+        android:padding = "5dp"
+        android:text = "BookingID"
+        android:singleLine = "true" />
+    <TextView
+        android:id = "@+id/RV_Item_OrderDate_BookingIn"
+        android:layout_width = "0dp"
+        android:layout_height = "match_parent"
+        android:layout_weight = "1"
+        android:background = "@drawable/cell_shape"
+        android:ellipsize = "end"
+        android:padding = "5dp"
+        android:text = "OrderDate"
+        android:singleLine = "true" />
+    <TextView
+        android:id = "@+id/RV_Item_CName_BookingIn"
+        android:layout_width = "0dp"
+        android:layout_height = "match_parent"
+        android:layout_weight = "2"
+        android:background = "@drawable/cell_shape"
+        android:ellipsize = "end"
+        android:padding = "5dp"
+        android:text = "Name"
+        android:singleLine = "true" />
+</androidx.appcompat.widget.LinearLayoutCompat>
