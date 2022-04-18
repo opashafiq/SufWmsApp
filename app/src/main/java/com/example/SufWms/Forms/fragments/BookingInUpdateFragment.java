@@ -11,10 +11,10 @@ import com.example.SufWms.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BookingInFragment#newInstance} factory method to
+ * Use the {@link BookingInUpdateFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookingInFragment extends Fragment {
+public class BookingInUpdateFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class BookingInFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public BookingInFragment() {
+    public BookingInUpdateFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class BookingInFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BookingInragment.
+     * @return A new instance of fragment BookingInUpdateFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BookingInFragment newInstance(String param1, String param2) {
-        BookingInFragment fragment = new BookingInFragment();
+    public static BookingInUpdateFragment newInstance(String param1, String param2) {
+        BookingInUpdateFragment fragment = new BookingInUpdateFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +60,6 @@ public class BookingInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking_in, container, false);
+        return inflater.inflate(R.layout.fragment_booking_in_update, container, false);
     }
 }

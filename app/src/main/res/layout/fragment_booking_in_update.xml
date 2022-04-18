@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.SufWms.Forms.fragments.BookingInFragment">
+
+    <Button
+        android:id="@+id/btnSave_BookingInUpdate"
+        style="@style/customButton"
+        android:layout_width="371dp"
+        android:layout_height="37dp"
+
+
+        android:background="@drawable/button_semi_transparent1"
+
+
+        android:text="Save"
+        app:layout_constraintHeight_percent=".09"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <EditText
+        android:id="@+id/txtDamageQty_BookingInUpdate"
+        style="@style/customEditText"
+        android:layout_width="175dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="Damage Qty"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave_BookingInUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAddedQty" />
+
+    <EditText
+        android:id="@+id/txtMissingQty_BookingInUpdate"
+        style="@style/customEditText"
+        android:layout_width="175dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="Missing Qty"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave_BookingInUpdate"
+        app:layout_constraintEnd_toStartOf="@+id/txtDamageQty_BookingInUpdate"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAddedQty" />
+
+    <include
+        android:id="@+id/tableLayoutBDetails"
+        layout="@layout/booking_details"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></include>
+
+    <EditText
+        android:id="@+id/txtLocationDetails_BookingInUpdate"
+        style="@style/customEditText"
+        android:layout_width="318dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="Location Details"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayoutBDetails" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_scan_1"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtLocationDetails_BookingInUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayoutBDetails" />
+
+    <EditText
+        android:id="@+id/txtQty_BookingInUpdate"
+        style="@style/customEditText"
+        android:layout_width="318dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_border_two_color"
+        android:drawablePadding="15dp"
+        android:ems="10"
+        android:hint="Quantity"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLocationDetails_BookingInUpdate" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_baseline_add_box_24"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtQty_BookingInUpdate" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@color/colorCell"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        app:layout_constraintTop_toBottomOf="@+id/txtQty_BookingInUpdate">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Location ID"
+            android:textColor="#ffffff" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Qty"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTotalAddedQty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/tvTotalAddedQty"
+        android:layout_width="369dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:text="Total Qty : "
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        tools:layout_editor_absoluteX="21dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
