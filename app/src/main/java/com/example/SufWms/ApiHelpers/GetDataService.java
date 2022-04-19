@@ -7,6 +7,7 @@ import com.example.SufWms.Classes.BookingMasterOut;
 import com.example.SufWms.Classes.BookingOut;
 import com.example.SufWms.Classes.CustomerInfo;
 import com.example.SufWms.Classes.LocationDetails;
+import com.example.SufWms.Classes.Location_Inventory_Mapping;
 import com.example.SufWms.Classes.Passwd;
 import com.example.SufWms.Models.DamageRepairParts;
 import com.example.SufWms.Models.InsertionMessage;
@@ -67,6 +68,10 @@ public interface GetDataService {
     //Get Location Details
     @GET("locationdetails")
     Call<List<LocationDetails>> doGetLocationDetails(@Query("BarcodeNo") String BarcodeNo);
+
+    //Get Location Inventory Mapping
+    @GET("locationinventorymapping")
+    Call<List<Location_Inventory_Mapping>> doGetLocationInventoryMapping(@Query("Rec_id") String Rec_id,@Query("SKU") String SKU);
 
     // Update Booking In
     @POST("updatebookingin")

@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
         /*
          * Retrieve The values the KEY : ip_web_address_1
          * */
-        String strPreferedVal = sharedPref.getString(getString(R.string.ip_web_address_1), "http://162.214.97.103/DMR/DMR/");
+        String strPreferedVal = sharedPref.getString(getString(R.string.ip_web_address_1), "http://192.168.102.73/SufWms/SUFWMS/");
         return strPreferedVal;
     }
 

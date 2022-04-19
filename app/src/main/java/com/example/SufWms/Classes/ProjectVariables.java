@@ -13,4 +13,6 @@ public class ProjectVariables {
     public static String LoginId = "";
     public static String userid = "";
     public static String UserGroup = "";
+
+    public static BookingIn bookingIn = new BookingIn();
 }

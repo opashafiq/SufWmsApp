@@ -9,17 +9,20 @@
     <Button
         android:id="@+id/btnSave_BookingInUpdate"
         style="@style/customButton"
-        android:layout_width="371dp"
+        android:layout_width="match_parent"
         android:layout_height="37dp"
 
 
+        android:layout_marginBottom="196dp"
+
+
         android:background="@drawable/button_semi_transparent1"
-
-
         android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".09"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="498dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAddedQty"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="24dp" />
 
     <EditText
         android:id="@+id/txtDamageQty_BookingInUpdate"
@@ -28,7 +31,7 @@
         android:layout_height="34dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginBottom="12dp"
         android:background="@drawable/edittext_border_two_color"
         android:drawablePadding="15dp"
@@ -45,8 +48,8 @@
         android:layout_width="175dp"
         android:layout_height="34dp"
         android:layout_marginTop="19dp"
-        android:layout_marginEnd="21dp"
         android:layout_marginRight="21dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginBottom="12dp"
         android:background="@drawable/edittext_border_two_color"
         android:drawablePadding="15dp"
@@ -87,19 +90,19 @@
         android:ems="10"
         android:hint="Location Details"
         android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/btnScan_BookingInUpdate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayoutBDetails" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnScan_BookingInUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_scan_1"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd_BookingInUpdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtLocationDetails_BookingInUpdate"
         app:layout_constraintTop_toBottomOf="@+id/tableLayoutBDetails" />
@@ -121,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLocationDetails_BookingInUpdate" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnAdd_BookingInUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -142,7 +145,7 @@
         android:layout_marginTop="18dp"
         android:background="@color/colorCell"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recycleLocationInventoryMapping"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
@@ -171,7 +174,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recycleLocationInventoryMapping"
         android:layout_width="match_parent"
         android:layout_height="184dp"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
@@ -188,7 +191,7 @@
         android:layout_height="26dp"
         android:layout_marginTop="5dp"
         android:text="Total Qty : "
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/recycleLocationInventoryMapping"
         tools:layout_editor_absoluteX="21dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
