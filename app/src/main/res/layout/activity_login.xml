@@ -15,7 +15,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="144dp"
         android:background="@drawable/button_semi_transparent1"
-        android:text="@string/label_button_register"
+        android:text="@string/label_button_settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".09"

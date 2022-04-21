@@ -6,8 +6,17 @@ public class Location_Inventory_Mapping {
     private String LocationDetailsId ;
     private String Qty ;
     private String UnitId ;
+    private String LocationDetails ;
     private String last_user ;
     private String last_update ;
+
+    public String getLocationDetails() {
+        return LocationDetails;
+    }
+
+    public void setLocationDetails(String locationDetails) {
+        LocationDetails = locationDetails;
+    }
 
     public String getILMappingId() {
         return ILMappingId;

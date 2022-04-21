@@ -21,6 +21,7 @@ import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
 import com.example.SufWms.Classes.Passwd;
 import com.example.SufWms.Classes.ProjectVariables;
+import com.example.SufWms.MainActivity;
 import com.example.SufWms.R;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         setLocale("en");
         setContentView(R.layout.activity_login);
         ProjectVariables.url = loadBaseIPAddress();
+        initObjects();
+        initObjectListeners();
+
+        //static credentials
+        ((EditText)findViewById(R.id.txtUserName)).setText("edwin");
+        ((EditText)findViewById(R.id.txtPassword)).setText("sa1234");
     }
 
     private void initObjects(){
@@ -55,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword=(EditText) findViewById(R.id.txtPassword);
         //intent = new Intent(this, MainActivity.class);
         intent = new Intent(this, LandingActivity.class);
+        pDialog = new ProgressDialog(LoginActivity.this);
     }
 
     private void initObjectListeners(){

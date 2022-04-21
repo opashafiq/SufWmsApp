@@ -13,19 +13,66 @@ public class BookingMasterOut {
     private String Last_User ;
     private String Last_Update ;
     private String OutBoundTypeId ;
-    private String CompanyName ;
-    private String AmazonName ;
-    private String Country ;
-    private String OfficePh ;
-    private String MobilePh ;
-    private String Address1 ;
-    private String Address2 ;
-    private String Email ;
-    private String last_user_comp ;
-    private String last_update_comp ;
+    private String co_no;
+    private String co_nm1;
+    private String contact1;
+    private String Country;
+    private String phone1;
+    private String MobilePh;
+    private String addr1;
+    private String Address2;
+    private String email1;
     private String loginId ;
     private String UserEmail ;
     private String OutBoundType ;
+
+    public String getCo_no() {
+        return co_no;
+    }
+
+    public void setCo_no(String co_no) {
+        this.co_no = co_no;
+    }
+
+    public String getCo_nm1() {
+        return co_nm1;
+    }
+
+    public void setCo_nm1(String co_nm1) {
+        this.co_nm1 = co_nm1;
+    }
+
+    public String getContact1() {
+        return contact1;
+    }
+
+    public void setContact1(String contact1) {
+        this.contact1 = contact1;
+    }
+
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    public String getAddr1() {
+        return addr1;
+    }
+
+    public void setAddr1(String addr1) {
+        this.addr1 = addr1;
+    }
+
+    public String getEmail1() {
+        return email1;
+    }
+
+    public void setEmail1(String email1) {
+        this.email1 = email1;
+    }
 
     public String getBookingId() {
         return BookingId;
@@ -123,21 +170,6 @@ public class BookingMasterOut {
         OutBoundTypeId = outBoundTypeId;
     }
 
-    public String getCompanyName() {
-        return CompanyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-
-    public String getAmazonName() {
-        return AmazonName;
-    }
-
-    public void setAmazonName(String amazonName) {
-        AmazonName = amazonName;
-    }
 
     public String getCountry() {
         return Country;
@@ -145,14 +177,6 @@ public class BookingMasterOut {
 
     public void setCountry(String country) {
         Country = country;
-    }
-
-    public String getOfficePh() {
-        return OfficePh;
-    }
-
-    public void setOfficePh(String officePh) {
-        OfficePh = officePh;
     }
 
     public String getMobilePh() {
@@ -163,13 +187,6 @@ public class BookingMasterOut {
         MobilePh = mobilePh;
     }
 
-    public String getAddress1() {
-        return Address1;
-    }
-
-    public void setAddress1(String address1) {
-        Address1 = address1;
-    }
 
     public String getAddress2() {
         return Address2;
@@ -177,30 +194,6 @@ public class BookingMasterOut {
 
     public void setAddress2(String address2) {
         Address2 = address2;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getLast_user_comp() {
-        return last_user_comp;
-    }
-
-    public void setLast_user_comp(String last_user_comp) {
-        this.last_user_comp = last_user_comp;
-    }
-
-    public String getLast_update_comp() {
-        return last_update_comp;
-    }
-
-    public void setLast_update_comp(String last_update_comp) {
-        this.last_update_comp = last_update_comp;
     }
 
     public String getLoginId() {

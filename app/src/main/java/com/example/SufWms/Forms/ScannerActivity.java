@@ -1,10 +1,8 @@
 package com.example.SufWms.Forms;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +12,13 @@ import android.view.SurfaceView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
 import com.example.SufWms.Classes.LocationDetails;
-import com.example.SufWms.Classes.Passwd;
+import com.example.SufWms.Classes.ProjectVariables;
 import com.example.SufWms.R;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -25,7 +26,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -172,7 +172,7 @@ public class ScannerActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<LocationDetails>> call, Response<List<LocationDetails>> response) {
                 pDialog.dismiss();
-                //ProcessPass(response.body());
+                backToCallerActivity(response.body());
             }
 
             @Override
@@ -181,6 +181,18 @@ public class ScannerActivity extends AppCompatActivity {
                 Toast.makeText(ScannerActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void backToCallerActivity(List<LocationDetails> _listLocationDetails){
+        if(_listLocationDetails.size()==0){
+            ProjectVariables.locationDetails=new LocationDetails();
+        }else {
+            ProjectVariables.locationDetails=_listLocationDetails.get(0);
+        }
+        //Back to caller activity
+        Intent returnIntent = new Intent();
+        setResult(RESULT_CANCELED, returnIntent);
+        finish();
     }
 
 

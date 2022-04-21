@@ -1,6 +1,7 @@
 package com.example.SufWms.Forms.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.SufWms.Adapters.RV_BookingMasterIn_Adapter;
 import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
 import com.example.SufWms.Classes.BookingIn;
+import com.example.SufWms.Classes.BookingInUpdate;
 import com.example.SufWms.Classes.BookingMasterIn;
 import com.example.SufWms.Classes.CustomerInfo;
 import com.example.SufWms.Classes.ProjectVariables;
@@ -31,6 +33,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,6 +115,25 @@ public class BookingInFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_booking_in, container, false);
 
+        initObjects(v);
+
+        //*load dummy data to master
+//        BookingMasterIn bookingMasterIn = new BookingMasterIn();
+//        bookingMasterIn.setBookingId("B0001");
+//        bookingMasterIn.setOrderDate("21-04-2022");
+//        bookingMasterIn.setCo_nm1("Company Name 1");
+//        listBookingMasterIn.clear();
+//        listBookingMasterIn.add(bookingMasterIn);
+//        bookingMasterIn = new BookingMasterIn();
+//        bookingMasterIn.setBookingId("B0002");
+//        bookingMasterIn.setOrderDate("21-04-2022");
+//        bookingMasterIn.setCo_nm1("Company Name 2");
+//        listBookingMasterIn.add(bookingMasterIn);
+//        rvAdapterBookingMasterIn.notifyDataSetChanged();
+        //////////////////
+
+        initObjectListener();
+        getCustomerList();
 
         return v;
     }
@@ -120,7 +144,8 @@ public class BookingInFragment extends Fragment {
             @Override
             public void setClick(int position) {
                 Toast.makeText(getActivity().getApplicationContext(),"Position is: "+position,Toast.LENGTH_LONG).show();
-                getBookingDetailsIn(listBookingDetailsIn.get(position).getBookingId().toString());
+                //ProjectVariables.bookingMasterIn=listBookingMasterIn.get(position);
+                //getBookingDetailsIn(listBookingDetailsIn.get(position).getBookingId().toString());
             }
         };
 
@@ -130,13 +155,15 @@ public class BookingInFragment extends Fragment {
             public void setClick(int position) {
                 Toast.makeText(getActivity().getApplicationContext(),"Position is: "+position,Toast.LENGTH_LONG).show();
                 ProjectVariables.bookingIn=listBookingDetailsIn.get(position);
+                Intent _intent = new Intent(getActivity().getApplicationContext(), BookingInUpdate.class);
+                startActivityForResult(_intent, 1);
             }
         };
 
         //Customer AutoCompleteText Box
         comboCustomer =(AutoCompleteTextView)v.findViewById(R.id.comboClientName_BookingIn);
-        arrayAdapterCustomer=new ArrayAdapter<String>(this.getContext(),R.layout.simple_spinner_item,R.id.tvListItemSpinnerVAT, arrCustomer);
-        comboCustomer.setAdapter(arrayAdapterCustomer);
+//        arrayAdapterCustomer=new ArrayAdapter<String>(this.getContext(),R.layout.simple_spinner_item,R.id.tvListItemSpinnerVAT, arrCustomer);
+//        comboCustomer.setAdapter(arrayAdapterCustomer);
 
 
         //Booking Master In RV
@@ -159,9 +186,33 @@ public class BookingInFragment extends Fragment {
 
     private void initObjectListener(){
         //Combo Customer info listener
-        comboCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//        comboCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selection = (String) parent.getItemAtPosition(position);
+//                int pos = -1;
+//
+//                for (int i = 0; i < arrCustomer.size(); i++) {
+//                    if (arrCustomer.get(i).toString().equals(selection)) {
+//                        pos = i;
+//                        break;
+//                    }
+//                }
+//                intCustomerPosition = pos;
+//                ProjectVariables.Rec_Id=arrCustomerId.get(intCustomerPosition).toString();
+//                getBookingMasterIn(arrCustomerId.get(intCustomerPosition).toString());
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+
+
+        comboCustomer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Log.e(TAG,"In Autotextview Item Click Listener");
                 String selection = (String) parent.getItemAtPosition(position);
                 int pos = -1;
 
@@ -172,25 +223,39 @@ public class BookingInFragment extends Fragment {
                     }
                 }
                 intCustomerPosition = pos;
+                ProjectVariables.Rec_Id=arrCustomerId.get(intCustomerPosition).toString();
                 getBookingMasterIn(arrCustomerId.get(intCustomerPosition).toString());
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
         //Booking Master In Click
-        rvBookingMasterIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        rvBookingMasterIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 1) {//Returned from insert call
+
+            if(resultCode == RESULT_OK){
+                //Update List
+            }
+            if (resultCode == RESULT_CANCELED) {
+                showMessage("Returned From activity");
+            }
+        }
+    }//onActivityResult
+
+    private void showMessage(String message){
+        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
 
 
     ////// Api Calls Start //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,13 +281,19 @@ public class BookingInFragment extends Fragment {
     }
 
     private void setCustomerList(List<CustomerInfo> listCustomerInfo){
-        arrCustomer.clear();
-        arrCustomerId.clear();
+        //arrCustomer.clear();
+        //arrCustomerId.clear();
         for (CustomerInfo customerIno:listCustomerInfo) {
-            arrCustomer.add(customerIno.getCompanyName());
+            arrCustomer.add(customerIno.getRec_id());
             arrCustomerId.add(customerIno.getRec_id());
         }
-        arrayAdapterCustomer.notifyDataSetChanged();
+        showMessage("Size of customer: " + arrCustomer.size());
+        showMessage("First Item of customer: " + arrCustomer.get(0).toString());
+        arrayAdapterCustomer=new ArrayAdapter<String>(this.getContext(),R.layout.simple_spinner_item,R.id.tvListItemSpinnerVAT, arrCustomer);
+        comboCustomer.setAdapter(arrayAdapterCustomer);
+        comboCustomer.setThreshold(1);
+        comboCustomer.setText(listCustomerInfo.get(0).getRec_id());
+        //arrayAdapterCustomer.notifyDataSetChanged();
     }
 
     private void getBookingMasterIn(String Rec_id){

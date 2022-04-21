@@ -6,31 +6,35 @@
     android:layout_height="match_parent"
     tools:context="com.example.SufWms.Forms.fragments.BookingInFragment">
 
+
     <AutoCompleteTextView
         android:id="@+id/comboClientName_BookingIn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
-        android:layout_marginTop="4dp"
-
+        android:layout_marginTop="50dp"
         android:layout_marginRight="@dimen/horizontal_margin_common"
+
         android:background="@drawable/spinner_bg"
         android:paddingLeft="6dp"
 
         android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLabelBookingInMaster"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/tvLabelBookingInMaster"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".03"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
 
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="274dp"
         android:layout_marginRight="274dp"
         android:text="Open Booking List:"
@@ -42,7 +46,8 @@
     <LinearLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".04"
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:background="@color/colorCell"
@@ -72,7 +77,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:gravity="center"
             android:padding="5dp"
             android:text="Company Name"
@@ -82,7 +87,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleBookingInMaster"
         android:layout_width="match_parent"
-        android:layout_height="246dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".27"
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginBottom="10dp"
@@ -94,7 +100,8 @@
     <TextView
         android:id="@+id/tvLabelBookingInDetails"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".03"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginRight="290dp"
@@ -107,7 +114,8 @@
     <LinearLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".04"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:background="@color/colorCell"
@@ -148,7 +156,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleBookingInDetails"
         android:layout_width="match_parent"
-        android:layout_height="113dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".14"
 
         android:layout_marginLeft="@dimen/horizontal_margin_common"
 

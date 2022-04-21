@@ -40,6 +40,7 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
         // set the data
         holder.tvRV_Item_LocationId_BookingInUpdate.setText( ListCurrentData.get(position).getLocationDetailsId());
         holder.tvRV_Item_Qty_BookingInUpdate.setText( ListCurrentData.get(position).getQty());
+        holder.tvRV_Item_LocationDetails_BookingInUpdate.setText( ListCurrentData.get(position).getLocationDetails());
         // Set onRVItemClickInterface so that position can be accessed from main activity
 
 
@@ -63,13 +64,14 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
 
     class UsersViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView tvRV_Item_LocationId_BookingInUpdate, tvRV_Item_Qty_BookingInUpdate;
+        TextView tvRV_Item_LocationId_BookingInUpdate, tvRV_Item_Qty_BookingInUpdate,tvRV_Item_LocationDetails_BookingInUpdate;
 
         public UsersViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             tvRV_Item_LocationId_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_LocationId_BookingInUpdate);
             tvRV_Item_Qty_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_Qty_BookingInUpdate);
+            tvRV_Item_LocationDetails_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_LocationDetails_BookingInUpdate);
 
         }
     }

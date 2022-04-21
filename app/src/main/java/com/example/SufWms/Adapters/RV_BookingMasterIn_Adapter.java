@@ -40,7 +40,7 @@ public class RV_BookingMasterIn_Adapter extends RecyclerView.Adapter<RV_BookingM
         // set the data
         holder.tvRV_Item_BookingId_BookingIn.setText( ListCurrentData.get(position).getBookingId());
         holder.tvRV_Item_OrderDate_BookingIn.setText( ListCurrentData.get(position).getOrderDate());
-        holder.tvRV_Item_CName_BookingIn.setText( ListCurrentData.get(position).getCompanyName());
+        holder.tvRV_Item_CName_BookingIn.setText( ListCurrentData.get(position).getCo_nm1());
         // Set onRVItemClickInterface so that position can be accessed from main activity
 
 

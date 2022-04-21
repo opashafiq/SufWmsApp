@@ -1,10 +1,12 @@
 package com.example.SufWms.Forms.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.SufWms.Adapters.RV_LocationInventoryMapping_Adapter;
 import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
+import com.example.SufWms.Classes.BookingIn;
+import com.example.SufWms.Classes.BookingInUpdate;
 import com.example.SufWms.Classes.BookingMasterIn;
 import com.example.SufWms.Classes.Location_Inventory_Mapping;
 import com.example.SufWms.Classes.ProjectVariables;
+import com.example.SufWms.Forms.ScannerActivity;
 import com.example.SufWms.Interface.onRVClickInterface;
+import com.example.SufWms.Models.InsertionMessage;
 import com.example.SufWms.R;
 
 import java.util.ArrayList;
@@ -28,6 +34,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -127,7 +136,8 @@ public class BookingInUpdateFragment extends Fragment {
         btnShowScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent _intent = new Intent(getActivity().getApplicationContext(), ScannerActivity.class);
+                startActivityForResult(_intent, 1);
             }
         });
 
@@ -140,12 +150,90 @@ public class BookingInUpdateFragment extends Fragment {
         });
     }
 
-    private void addItemToRV(View v){
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 1) {//Returned from insert call
+
+            if(resultCode == RESULT_OK){
+                //Update List
+            }
+            if (resultCode == RESULT_CANCELED) {
+                showMessage("Returned From activity");
+                if(ProjectVariables.locationDetails.getId()==null){
+                    ((EditText)getView().findViewById(R.id.txtLocationDetails_BookingInUpdate)).setText("");
+                }else{
+                    ((EditText)getView().findViewById(R.id.txtLocationDetails_BookingInUpdate)).setText(ProjectVariables.locationDetails.getDetails());
+                }
+
+            }
+        }
+    }//onActivityResult
+
+
+    private void addItemToRV(View v){
+        if(!validateDataBeforeAddingToRV(v)){
+            return;
+        }
+        GenerateRVData(v);
     }
 
-    private void calculateAndGenerateRVData(View v){
+    private boolean validateDataBeforeAddingToRV(View v){
+        String _qty= ((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString();
+        int _qtyTot=0;
+        //Check whether there is any data in location details
+        if(((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString().equals("")){
+            showMessage("Please scan a location");
+            return false;
+        }
+        //Check whether there is any data Quantity
+        if(_qty.equals("") || _qty.equals("0")){
+            showMessage("Please Provide Qty");
+            return false;
+        }
+        //Check whether Qty is greater than the booking qty
+        if(Integer.parseInt(_qty) > Integer.parseInt(ProjectVariables.bookingIn.getQty())){
+            showMessage("Quantity is larger than the booking quantity");
+            return false;
+        }
 
+        //Check whether sum of Qty is greater than the booking qty
+        for (Location_Inventory_Mapping lim:listLocation_Inventory_Mapping) {
+            _qtyTot+= Integer.parseInt(lim.getQty());
+        }
+        if((Integer.parseInt(_qty)+_qtyTot)>Integer.parseInt(ProjectVariables.bookingIn.getQty())){
+            showMessage("Total Quantity is greater than the booking quantity");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateBeforeSave(View v){
+        //Check whether total qty greater than the booking qty
+        int _qtyTot=0;
+        int _missingQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString());
+        int _damageQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString());
+
+        for (Location_Inventory_Mapping lim:listLocation_Inventory_Mapping) {
+            _qtyTot+= Integer.parseInt(lim.getQty());
+        }
+        if((_qtyTot+_damageQty+_missingQty)>Integer.parseInt(ProjectVariables.bookingIn.getQty())){
+            showMessage("Total Quantity(Missing+Damage_Total) is greater than the booking quantity");
+        }
+
+        return true;
+    }
+
+    private void GenerateRVData(View v){
+        Location_Inventory_Mapping _location_inventory_mapping = new Location_Inventory_Mapping();
+        _location_inventory_mapping.setLocationDetailsId(ProjectVariables.locationDetails.getLocationId());
+        _location_inventory_mapping.setLocationDetails(ProjectVariables.locationDetails.getDetails());
+        _location_inventory_mapping.setQty(((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString());
+        _location_inventory_mapping.setLast_user(ProjectVariables.LoginId);
+        listLocation_Inventory_Mapping.add(_location_inventory_mapping);
+        rvAdapterLocationInventoryMapping.notifyDataSetChanged();
     }
 
     private void loadLocationInventoryMappingRV(View v){
@@ -153,12 +241,12 @@ public class BookingInUpdateFragment extends Fragment {
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<Location_Inventory_Mapping>> call = service.doGetLocationInventoryMapping(Rec_id);
+        Call<List<Location_Inventory_Mapping>> call = service.doGetLocationInventoryMapping(ProjectVariables.Rec_Id,ProjectVariables.bookingIn.getSKU());
         call.enqueue(new Callback<List<Location_Inventory_Mapping>>() {
             @Override
             public void onResponse(Call<List<Location_Inventory_Mapping>> call, Response<List<Location_Inventory_Mapping>> response) {
                 pDialog.dismiss();
-                setBookingMasterIn(response.body());
+                setRvLocationInventoryMapping(response.body());
             }
 
             @Override
@@ -168,4 +256,80 @@ public class BookingInUpdateFragment extends Fragment {
             }
         });
     }
+
+    private void setRvLocationInventoryMapping(List<Location_Inventory_Mapping> _listLocationInventoryMapping){
+        listLocation_Inventory_Mapping.clear();
+        listLocation_Inventory_Mapping.addAll(_listLocationInventoryMapping);
+        rvAdapterLocationInventoryMapping.notifyDataSetChanged();
+    }
+
+    private void saveData(View v){
+        if(!validateBeforeSave(v)){
+            return;
+        }
+
+        List<BookingInUpdate> _listBookingUpdate = prepareSaveData(v);
+
+        pDialog.show();
+
+        /*Create handle for the RetrofitInstance interface*/
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<List<InsertionMessage>> call = service.doUpdateBookingIn(_listBookingUpdate);
+        call.enqueue(new Callback<List<InsertionMessage>>() {
+            @Override
+            public void onResponse(Call<List<InsertionMessage>> call, Response<List<InsertionMessage>> response) {
+                pDialog.dismiss();
+                showMessage(response.body().get(0).getStrMessage());
+                //setRvLocationInventoryMapping(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<InsertionMessage>> call, Throwable t) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity().getApplicationContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private List<BookingInUpdate> prepareSaveData(View v){
+        int _missingQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString());
+        int _damageQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString());
+
+        //Prepare BookingMasterIn
+        ProjectVariables.bookingMasterIn.setLast_User(ProjectVariables.LoginId);
+        List<BookingMasterIn> _listBookingMasterIn = new ArrayList<>();
+        _listBookingMasterIn.add(ProjectVariables.bookingMasterIn);
+
+        //Prepare BookingIn
+        List<BookingIn> _listBookingIn = new ArrayList<>();
+        BookingIn _bookingIn = new BookingIn();
+        _bookingIn=ProjectVariables.bookingIn;
+        _bookingIn.setMissingQty(String.valueOf(_missingQty));
+        _bookingIn.setDamageQty(String.valueOf(_damageQty));
+        _bookingIn.setRecivedQty(String.valueOf(Integer.parseInt(_bookingIn.getQty())-_missingQty-_damageQty));
+        _listBookingIn.add(_bookingIn);
+
+        //prepare LocationInventoryMapping
+        List<Location_Inventory_Mapping> _listLocationInventoryMapping = new ArrayList<>();
+        _listLocationInventoryMapping.addAll(listLocation_Inventory_Mapping);
+
+        //prepare BookingInUpdate
+        List<BookingInUpdate> _listBookingInUpdate = new ArrayList<>();
+        BookingInUpdate bookingInUpdate = new BookingInUpdate();
+        bookingInUpdate.setBi(_listBookingIn);
+        bookingInUpdate.setBm(_listBookingMasterIn);
+        bookingInUpdate.setLim(_listLocationInventoryMapping);
+        _listBookingInUpdate.add(bookingInUpdate);
+
+        return _listBookingInUpdate;
+
+    }
+
+    private void showMessage(String message){
+        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+
+
 }
