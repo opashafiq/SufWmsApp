@@ -71,7 +71,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnScan_BookingInUpdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></include>
@@ -198,10 +198,17 @@
         android:id="@+id/tvTotalAddedQty"
         android:layout_width="369dp"
         android:layout_height="26dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginBottom="19dp"
         android:text="Total Qty : "
-        app:layout_constraintTop_toBottomOf="@+id/recycleLocationInventoryMapping"
-        tools:layout_editor_absoluteX="21dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txtDamageQty_BookingInUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleLocationInventoryMapping" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

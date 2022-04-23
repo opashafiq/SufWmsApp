@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -103,6 +104,9 @@ public class BookingInUpdateFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_booking_in_update, container, false);
 
+        loadMasterInfo(v);
+        initObjects(v);
+        initObjectListener(v);
 
         return v;
 
@@ -129,6 +133,9 @@ public class BookingInUpdateFragment extends Fragment {
         rvLocationInventoryMapping.setLayoutManager(layoutManager);
         rvAdapterLocationInventoryMapping = new RV_LocationInventoryMapping_Adapter(this.getContext(),listLocation_Inventory_Mapping,onrvclickInterface);
         rvLocationInventoryMapping.setAdapter(rvAdapterLocationInventoryMapping);
+
+        pDialog = new ProgressDialog(this.getContext());
+        pDialog.setTitle("Please wait..");
     }
 
     private void initObjectListener(View v){
@@ -145,7 +152,15 @@ public class BookingInUpdateFragment extends Fragment {
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItemToRV(view);
+                addItemToRV(v);
+            }
+        });
+
+        Button btnSave = (Button)v.findViewById(R.id.btnSave_BookingInUpdate);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData(v);
             }
         });
     }
@@ -161,7 +176,7 @@ public class BookingInUpdateFragment extends Fragment {
             }
             if (resultCode == RESULT_CANCELED) {
                 showMessage("Returned From activity");
-                if(ProjectVariables.locationDetails.getId()==null){
+                if(ProjectVariables.locationDetails==null){
                     ((EditText)getView().findViewById(R.id.txtLocationDetails_BookingInUpdate)).setText("");
                 }else{
                     ((EditText)getView().findViewById(R.id.txtLocationDetails_BookingInUpdate)).setText(ProjectVariables.locationDetails.getDetails());
@@ -183,7 +198,7 @@ public class BookingInUpdateFragment extends Fragment {
         String _qty= ((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString();
         int _qtyTot=0;
         //Check whether there is any data in location details
-        if(((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString().equals("")){
+        if(((EditText)v.findViewById(R.id.txtLocationDetails_BookingInUpdate)).getText().toString().equals("")){
             showMessage("Please scan a location");
             return false;
         }
@@ -221,6 +236,7 @@ public class BookingInUpdateFragment extends Fragment {
         }
         if((_qtyTot+_damageQty+_missingQty)>Integer.parseInt(ProjectVariables.bookingIn.getQty())){
             showMessage("Total Quantity(Missing+Damage_Total) is greater than the booking quantity");
+            return false;
         }
 
         return true;

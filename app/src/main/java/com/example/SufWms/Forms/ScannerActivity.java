@@ -53,11 +53,16 @@ public class ScannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
+        InitObjects();
     }
 
     private void InitObjects(){
+        surfaceView = (SurfaceView)findViewById(R.id.svQRCodeScan);
         TextView tvPageHeading = (TextView)findViewById(R.id.tvPageHeading);
         tvPageHeading.setText(getResources().getString(R.string.heading_scan_page));
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setTitle("Please wait..");
     }
 
     protected void onPause() {

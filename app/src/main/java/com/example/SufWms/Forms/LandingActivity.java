@@ -6,6 +6,7 @@ import android.view.Menu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -47,8 +48,28 @@ public class LandingActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        FragmentManager oChildFragmentManager = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).getChildFragmentManager();
+        if(oChildFragmentManager.getBackStackEntryCount() > 1){
+            oChildFragmentManager.popBackStack();
+            return true;
+        }
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public void onBackPressed() {
+
+        FragmentManager oChildFragmentManager = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).getChildFragmentManager();
+        if(oChildFragmentManager.getBackStackEntryCount() > 1){
+            oChildFragmentManager.popBackStack();
+            return;
+        }
+
+        super.onBackPressed();
+    }
+
+
 }

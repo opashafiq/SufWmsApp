@@ -51,7 +51,7 @@ public class RV_BookingMasterIn_Adapter extends RecyclerView.Adapter<RV_BookingM
             @Override
             public void onClick(View view) {
                 // display a toast with user name
-                Toast.makeText(context, ListCurrentData.get(position).getBookingId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, ListCurrentData.get(position).getBookingId(), Toast.LENGTH_SHORT).show();
                 onrvClickInterface.setClick(position);
             }
         });

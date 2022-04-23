@@ -1,5 +1,7 @@
 package com.example.SufWms.Forms.fragments;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import com.example.SufWms.Classes.BookingInUpdate;
 import com.example.SufWms.Classes.BookingMasterIn;
 import com.example.SufWms.Classes.CustomerInfo;
 import com.example.SufWms.Classes.ProjectVariables;
+import com.example.SufWms.Forms.TestActivity;
 import com.example.SufWms.Interface.onRVClickInterface;
 import com.example.SufWms.R;
 
@@ -144,8 +147,8 @@ public class BookingInFragment extends Fragment {
             @Override
             public void setClick(int position) {
                 Toast.makeText(getActivity().getApplicationContext(),"Position is: "+position,Toast.LENGTH_LONG).show();
-                //ProjectVariables.bookingMasterIn=listBookingMasterIn.get(position);
-                //getBookingDetailsIn(listBookingDetailsIn.get(position).getBookingId().toString());
+                ProjectVariables.bookingMasterIn=listBookingMasterIn.get(position);
+                getBookingDetailsIn(listBookingMasterIn.get(position).getBookingId().toString());
             }
         };
 
@@ -155,8 +158,24 @@ public class BookingInFragment extends Fragment {
             public void setClick(int position) {
                 Toast.makeText(getActivity().getApplicationContext(),"Position is: "+position,Toast.LENGTH_LONG).show();
                 ProjectVariables.bookingIn=listBookingDetailsIn.get(position);
-                Intent _intent = new Intent(getActivity().getApplicationContext(), BookingInUpdate.class);
-                startActivityForResult(_intent, 1);
+                //Intent _intent = new Intent(getActivity().getApplicationContext(), BookingInUpdate.class);
+               // startActivityForResult(_intent, 1);
+
+                BookingInUpdateFragment fragment2=BookingInUpdateFragment.newInstance("A","B");
+//                FragmentManager fragmentManager=getActivity().getFragmentManager();
+//                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.nav_host_fragment,fragment2,"tag");
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.nav_host_fragment, fragment2, "findThisFragment")
+//                        .addToBackStack(null)
+//                        .commit();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, new BookingInUpdateFragment())
+                        .addToBackStack("")
+                        .commit();
             }
         };
 
@@ -182,6 +201,7 @@ public class BookingInFragment extends Fragment {
 
 
         pDialog = new ProgressDialog(this.getContext());
+        pDialog.setTitle("Please wait..");
     }
 
     private void initObjectListener(){
@@ -318,6 +338,7 @@ public class BookingInFragment extends Fragment {
     }
 
     private void setBookingMasterIn(List<BookingMasterIn> _listBookingMasterIn){
+        showMessage("Master RecordsL " + _listBookingMasterIn.size());
         listBookingMasterIn.clear();
         listBookingMasterIn.addAll(_listBookingMasterIn);
         rvAdapterBookingMasterIn.notifyDataSetChanged();

@@ -110,7 +110,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Passwd>> call, Throwable t) {
                 pDialog.dismiss();
+
                 Toast.makeText(LoginActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
