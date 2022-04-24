@@ -17,5 +17,5 @@ public class ProjectVariables {
     public static BookingIn bookingIn = new BookingIn();
     public static BookingMasterIn bookingMasterIn = new BookingMasterIn();
     public static String Rec_Id;
-    public static LocationDetails locationDetails;
+    public static LocationDetails locationDetails=new LocationDetails();
 }

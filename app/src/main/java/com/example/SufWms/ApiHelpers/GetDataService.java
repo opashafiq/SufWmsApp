@@ -75,7 +75,7 @@ public interface GetDataService {
 
     // Update Booking In
     @POST("updatebookingin")
-    Call<List<InsertionMessage>> doUpdateBookingIn(@Body List<BookingInUpdate> drp);
+    Call<List<InsertionMessage>> doUpdateBookingIn(@Body BookingInUpdate biu);
     //Call<List<InsertionMessage>> doInsertPartDetails(@Field("tstpar") String tstpar);
 
 }

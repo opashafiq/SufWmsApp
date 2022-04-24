@@ -18,7 +18,7 @@
         android:background="@drawable/spinner_bg"
         android:paddingLeft="6dp"
 
-        android:textSize="10sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvLabelBookingInMaster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".07"
@@ -92,6 +92,7 @@
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/border_rv"
         app:layout_constraintBottom_toTopOf="@+id/tvLabelBookingInDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

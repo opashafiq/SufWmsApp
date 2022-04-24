@@ -27,7 +27,8 @@ public class RV_PartDetails_Adapter extends RecyclerView.Adapter<RV_PartDetails_
     @Override
     public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.part_details_list_item, null);
+        //View view = LayoutInflater.from(context).inflate(R.layout.part_details_list_item, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.part_details_list_item,parent, false);
         UsersViewHolder usersViewHolder = new UsersViewHolder(view);
         return usersViewHolder;
     }

@@ -30,9 +30,15 @@ public class RV_BookingMasterInDetails_Adapter extends RecyclerView.Adapter<RV_B
     @Override
     public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_details, null);
-        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
-        return usersViewHolder;
+//        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_details, null);
+//        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_details, parent,false);
+//        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
+//        return usersViewHolder;
+
+        View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_details, null, false);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rootView.setLayoutParams(lp);
+        return new RV_BookingMasterInDetails_Adapter.UsersViewHolder(rootView);
     }
 
     @Override

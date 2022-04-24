@@ -107,9 +107,21 @@ public class BookingInUpdateFragment extends Fragment {
         loadMasterInfo(v);
         initObjects(v);
         initObjectListener(v);
+        loadDummyData(v);
 
         return v;
 
+    }
+
+    private void loadDummyData(View v){
+        ProjectVariables.locationDetails.setBarcodeNo("LB0001");
+        ProjectVariables.locationDetails.setDetails("Location Det 1");
+        ProjectVariables.locationDetails.setId("5");
+        ProjectVariables.locationDetails.setIsAvailable("1");
+        ProjectVariables.locationDetails.setLast_update("01-04-2022");
+        ProjectVariables.locationDetails.setLast_user("edwin");
+        ProjectVariables.locationDetails.setLocationId("1");
+        ((EditText)v.findViewById(R.id.txtLocationDetails_BookingInUpdate)).setText(ProjectVariables.locationDetails.getDetails());
     }
 
     private void loadMasterInfo(View v){
@@ -228,8 +240,11 @@ public class BookingInUpdateFragment extends Fragment {
     private boolean validateBeforeSave(View v){
         //Check whether total qty greater than the booking qty
         int _qtyTot=0;
-        int _missingQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString());
-        int _damageQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString());
+        String _SmissingQty= ((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString();
+        String _SdamageQty= ((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString();
+
+        int _missingQty = _SmissingQty.equals("")?0:Integer.parseInt(_SmissingQty);
+        int _damageQty = _SdamageQty.equals("")?0:Integer.parseInt(_SdamageQty);
 
         for (Location_Inventory_Mapping lim:listLocation_Inventory_Mapping) {
             _qtyTot+= Integer.parseInt(lim.getQty());
@@ -244,7 +259,7 @@ public class BookingInUpdateFragment extends Fragment {
 
     private void GenerateRVData(View v){
         Location_Inventory_Mapping _location_inventory_mapping = new Location_Inventory_Mapping();
-        _location_inventory_mapping.setLocationDetailsId(ProjectVariables.locationDetails.getLocationId());
+        _location_inventory_mapping.setLocationDetailsId(ProjectVariables.locationDetails.getId());
         _location_inventory_mapping.setLocationDetails(ProjectVariables.locationDetails.getDetails());
         _location_inventory_mapping.setQty(((EditText)v.findViewById(R.id.txtQty_BookingInUpdate)).getText().toString());
         _location_inventory_mapping.setLast_user(ProjectVariables.LoginId);
@@ -284,17 +299,20 @@ public class BookingInUpdateFragment extends Fragment {
             return;
         }
 
-        List<BookingInUpdate> _listBookingUpdate = prepareSaveData(v);
+        BookingInUpdate _bookingUpdate = prepareSaveData(v);
+
+
 
         pDialog.show();
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<InsertionMessage>> call = service.doUpdateBookingIn(_listBookingUpdate);
+        Call<List<InsertionMessage>> call = service.doUpdateBookingIn(_bookingUpdate);
         call.enqueue(new Callback<List<InsertionMessage>>() {
             @Override
             public void onResponse(Call<List<InsertionMessage>> call, Response<List<InsertionMessage>> response) {
                 pDialog.dismiss();
+                showMessage("returned");
                 showMessage(response.body().get(0).getStrMessage());
                 //setRvLocationInventoryMapping(response.body());
             }
@@ -308,9 +326,12 @@ public class BookingInUpdateFragment extends Fragment {
 
     }
 
-    private List<BookingInUpdate> prepareSaveData(View v){
-        int _missingQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString());
-        int _damageQty= Integer.parseInt (((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString());
+    private BookingInUpdate prepareSaveData(View v){
+        String _SmissingQty= ((EditText)v.findViewById(R.id.txtMissingQty_BookingInUpdate)).getText().toString();
+        String _SdamageQty= ((EditText)v.findViewById(R.id.txtDamageQty_BookingInUpdate)).getText().toString();
+
+        int _missingQty = _SmissingQty.equals("")?0:Integer.parseInt(_SmissingQty);
+        int _damageQty = _SdamageQty.equals("")?0:Integer.parseInt(_SdamageQty);
 
         //Prepare BookingMasterIn
         ProjectVariables.bookingMasterIn.setLast_User(ProjectVariables.LoginId);
@@ -330,15 +351,20 @@ public class BookingInUpdateFragment extends Fragment {
         List<Location_Inventory_Mapping> _listLocationInventoryMapping = new ArrayList<>();
         _listLocationInventoryMapping.addAll(listLocation_Inventory_Mapping);
 
+//        showMessage("Booking in Size: " + _listBookingIn.size());
+//        showMessage("Booking Master Size: " + _listBookingMasterIn.size());
+//        showMessage("Location Inventory Mapping Size: " + _listLocationInventoryMapping.size());
+
+
+
         //prepare BookingInUpdate
-        List<BookingInUpdate> _listBookingInUpdate = new ArrayList<>();
         BookingInUpdate bookingInUpdate = new BookingInUpdate();
         bookingInUpdate.setBi(_listBookingIn);
         bookingInUpdate.setBm(_listBookingMasterIn);
         bookingInUpdate.setLim(_listLocationInventoryMapping);
-        _listBookingInUpdate.add(bookingInUpdate);
+        //showMessage("Sizes : " + _listBookingIn.size() + " : " + _listBookingMasterIn.size() + " : " + _listLocationInventoryMapping.size() + " : " + _listBookingInUpdate.size());
 
-        return _listBookingInUpdate;
+        return bookingInUpdate;
 
     }
 

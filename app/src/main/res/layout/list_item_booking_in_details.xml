@@ -30,7 +30,7 @@
         android:id = "@+id/RV_Item_Qty_BookingInDet"
         android:layout_width = "0dp"
         android:layout_height = "match_parent"
-        android:layout_weight = "2"
+        android:layout_weight = "1"
         android:background = "@drawable/cell_shape"
         android:ellipsize = "end"
         android:padding = "5dp"

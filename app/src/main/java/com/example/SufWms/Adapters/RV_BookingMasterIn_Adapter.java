@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,9 +29,14 @@ public class RV_BookingMasterIn_Adapter extends RecyclerView.Adapter<RV_BookingM
     @Override
     public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_master, null);
-        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
-        return usersViewHolder;
+//        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_master, null);
+//        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
+//        return usersViewHolder;
+
+        View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_master, null, false);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rootView.setLayoutParams(lp);
+        return new UsersViewHolder(rootView);
     }
 
     @Override

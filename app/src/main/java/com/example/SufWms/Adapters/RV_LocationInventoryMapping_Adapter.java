@@ -30,9 +30,15 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
     @Override
     public UsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, null);
-        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
-        return usersViewHolder;
+//        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, null);
+//        View view = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, parent,false);
+//        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
+//        return usersViewHolder;
+
+        View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, null, false);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rootView.setLayoutParams(lp);
+        return new RV_LocationInventoryMapping_Adapter.UsersViewHolder(rootView);
     }
 
     @Override

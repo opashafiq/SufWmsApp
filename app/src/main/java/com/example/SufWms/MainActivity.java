@@ -1,15 +1,15 @@
 package com.example.SufWms;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.SufWms.Adapters.RV_PartDetails_Adapter;
 import com.example.SufWms.ApiHelpers.GetDataService;
@@ -60,24 +60,33 @@ public class MainActivity extends AppCompatActivity {
         btnLoadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pDialog.show();
-
-                /*Create handle for the RetrofitInstance interface*/
-                GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-                Call<List<PartDetails>> call = service.doGetPartDetails("101");
-                call.enqueue(new Callback<List<PartDetails>>() {
-                    @Override
-                    public void onResponse(Call<List<PartDetails>> call, Response<List<PartDetails>> response) {
-                        pDialog.dismiss();
-                        loadRecycleView(response.body());
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<PartDetails>> call, Throwable t) {
-                        pDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                List<PartDetails> listPartDetails = new ArrayList<>();
+                PartDetails partDetails = new PartDetails();
+                partDetails.setPartId("1");
+                partDetails.setPartsName("Part 1");
+                listPartDetails.add(partDetails);
+                partDetails.setPartId("2");
+                partDetails.setPartsName("Part 2");
+                listPartDetails.add(partDetails);
+                loadRecycleView(listPartDetails);
+//                pDialog.show();
+//
+//                /*Create handle for the RetrofitInstance interface*/
+//                GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+//                Call<List<PartDetails>> call = service.doGetPartDetails("101");
+//                call.enqueue(new Callback<List<PartDetails>>() {
+//                    @Override
+//                    public void onResponse(Call<List<PartDetails>> call, Response<List<PartDetails>> response) {
+//                        pDialog.dismiss();
+//                        loadRecycleView(response.body());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<PartDetails>> call, Throwable t) {
+//                        pDialog.dismiss();
+//                        Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }
         });
 
