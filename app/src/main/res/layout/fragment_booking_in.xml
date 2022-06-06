@@ -92,7 +92,6 @@
         android:layout_marginRight="@dimen/horizontal_margin_common"
         android:layout_marginLeft="@dimen/horizontal_margin_common"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/border_rv"
         app:layout_constraintBottom_toTopOf="@+id/tvLabelBookingInDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

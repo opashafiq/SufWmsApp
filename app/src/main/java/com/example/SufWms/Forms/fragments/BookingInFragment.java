@@ -1,13 +1,12 @@
 package com.example.SufWms.Forms.fragments;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -22,11 +21,9 @@ import com.example.SufWms.Adapters.RV_BookingMasterIn_Adapter;
 import com.example.SufWms.ApiHelpers.GetDataService;
 import com.example.SufWms.ApiHelpers.RetrofitClientInstance;
 import com.example.SufWms.Classes.BookingIn;
-import com.example.SufWms.Classes.BookingInUpdate;
 import com.example.SufWms.Classes.BookingMasterIn;
 import com.example.SufWms.Classes.CustomerInfo;
 import com.example.SufWms.Classes.ProjectVariables;
-import com.example.SufWms.Forms.TestActivity;
 import com.example.SufWms.Interface.onRVClickInterface;
 import com.example.SufWms.R;
 
@@ -134,6 +131,9 @@ public class BookingInFragment extends Fragment {
 //        listBookingMasterIn.add(bookingMasterIn);
 //        rvAdapterBookingMasterIn.notifyDataSetChanged();
         //////////////////
+
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
         initObjectListener();
         getCustomerList();

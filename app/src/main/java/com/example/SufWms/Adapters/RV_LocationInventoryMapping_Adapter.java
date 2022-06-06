@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,8 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
 //        UsersViewHolder usersViewHolder = new UsersViewHolder(view);
 //        return usersViewHolder;
 
-        View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, null, false);
+        //View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_booking_in_update, null, false);
+        View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_location_inventory_mapping, null, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rootView.setLayoutParams(lp);
         return new RV_LocationInventoryMapping_Adapter.UsersViewHolder(rootView);
@@ -61,6 +63,16 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
                 onrvClickInterface.setClick(position);
             }
         });
+
+        ////////////////////
+        holder.ivRV_Item_Delete_BookingInUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Delete Clicked", Toast.LENGTH_SHORT).show();
+                ListCurrentData.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -71,6 +83,7 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
     class UsersViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         TextView tvRV_Item_LocationId_BookingInUpdate, tvRV_Item_Qty_BookingInUpdate,tvRV_Item_LocationDetails_BookingInUpdate;
+        ImageView ivRV_Item_Delete_BookingInUpdate;
 
         public UsersViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +91,7 @@ public class RV_LocationInventoryMapping_Adapter extends RecyclerView.Adapter<RV
             tvRV_Item_LocationId_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_LocationId_BookingInUpdate);
             tvRV_Item_Qty_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_Qty_BookingInUpdate);
             tvRV_Item_LocationDetails_BookingInUpdate = (TextView) itemView.findViewById(R.id.RV_Item_LocationDetails_BookingInUpdate);
+            ivRV_Item_Delete_BookingInUpdate = (ImageView) itemView.findViewById(R.id.RV_Item_Delete_BookingInUpdate);
 
         }
     }

@@ -172,6 +172,7 @@ public class BookingInUpdateFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //showMessage("Size is: " + listLocation_Inventory_Mapping.size());
                 saveData(v);
             }
         });
